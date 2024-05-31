@@ -1,0 +1,17 @@
+{
+  "name": "dsa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MaNaSDeo/DSA.git",
+  "author": "manasdeo <rmnslogin@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc && node dist/findQuadrant.js && rimraf dist",
+    "dev": "ts-node-dev --respawn --pretty DSA-01/findQuadrant.ts"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}
