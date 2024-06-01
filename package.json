@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node dist/findQuadrant.js && rimraf dist",
-    "dev": "ts-node-dev --respawn --pretty Udemy/ProblemSolvingPatern/anagram.ts"
+    "dev": "ts-node-dev --respawn --pretty Udemy/ProblemSolvingPatern/multiplePointerSystem.ts"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
