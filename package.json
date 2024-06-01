@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "tsc && node dist/findQuadrant.js && rimraf dist",
-    "dev": "ts-node-dev --respawn --pretty DSA-01/findQuadrant.ts"
+    "dev": "ts-node-dev --respawn --pretty Udemy/Array/frequencyCounter.ts"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
