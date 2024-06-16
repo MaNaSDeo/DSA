@@ -6,8 +6,9 @@
   "author": "manasdeo <rmnslogin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node dist/findQuadrant.js && rimraf dist",
-    "dev": "ts-node-dev --respawn --pretty Udemy/ProblemSolvingPatern/countUniqueValues.ts"
+    "start": "tsc && node dist/DSA-02/Crio/Lec-01/printMatrixInSpiralOrder.js",
+    "dev": "ts-node-dev --respawn --pretty DSA-02/Crio/Lec-01/printMatrixInSpiralOrder.ts",
+    "build": "tsc"
   },
   "devDependencies": {
     "ts-node": "^10.9.2",
