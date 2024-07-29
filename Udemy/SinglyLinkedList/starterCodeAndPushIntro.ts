@@ -107,22 +107,37 @@ class SinglyLinkedList<T> {
 
     return currentHead.val;
   }
+
+  unshift(val: T): SinglyLinkedList<T> {
+    let newNode = new ListNode(val);
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+    this.length++;
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
 // console.log("empty list", list);
-list.push("Hello").push("There").push("!");
+// list.push("Hello").push("There").push("!");
 // console.log("list", list);
 list.traverse();
 // let poppedValue = list.pop();
 // console.log("Popped value:", poppedValue);
 
 // console.log("After pop:");
-list.shift();
-console.log("first shift list", list);
-list.shift();
-console.log("second shift list", list);
-list.shift();
-console.log("third shift list", list);
+// list.shift();
+// console.log("first shift list", list);
+// list.shift();
+// console.log("second shift list", list);
+// list.shift();
+// console.log("third shift list", list);
+list.unshift("Okay");
+console.log("list", list);
 
 list.traverse();
