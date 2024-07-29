@@ -120,11 +120,21 @@ class SinglyLinkedList<T> {
     this.length++;
     return this;
   }
+  get(index: number): T | undefined {
+    if (index >= this.length || index < 0) return undefined;
+    let count = 0,
+      current = this.head;
+    while (count !== index) {
+      current = current!.next;
+      count++;
+    }
+    return current?.val;
+  }
 }
 
 let list = new SinglyLinkedList();
 // console.log("empty list", list);
-// list.push("Hello").push("There").push("!");
+list.push("Hello").push("There").push("!");
 // console.log("list", list);
 list.traverse();
 // let poppedValue = list.pop();
@@ -137,7 +147,11 @@ list.traverse();
 // console.log("second shift list", list);
 // list.shift();
 // console.log("third shift list", list);
-list.unshift("Okay");
-console.log("list", list);
+// list.unshift("Okay");
+// console.log("list", list);
 
-list.traverse();
+// list.traverse();
+console.log(list.get(0));
+console.log(list.get(3));
+console.log(list.get(-10));
+console.log(list.get(10));
