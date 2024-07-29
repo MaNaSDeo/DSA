@@ -120,15 +120,23 @@ class SinglyLinkedList<T> {
     this.length++;
     return this;
   }
-  get(index: number): T | undefined {
-    if (index >= this.length || index < 0) return undefined;
+  get(index: number): ListNode<T> | null {
+    if (index >= this.length || index < 0) return null;
     let count = 0,
       current = this.head;
     while (count !== index) {
       current = current!.next;
       count++;
     }
-    return current?.val;
+    return current;
+  }
+  set(index: number, val: T): boolean {
+    let foundNode = this.get(index);
+    if (foundNode) {
+      foundNode.val = val;
+      return true;
+    }
+    return false;
   }
 }
 
@@ -151,7 +159,10 @@ list.traverse();
 // console.log("list", list);
 
 // list.traverse();
-console.log(list.get(0));
-console.log(list.get(3));
-console.log(list.get(-10));
-console.log(list.get(10));
+// console.log(list.get(0));
+// console.log(list.get(3));
+// console.log(list.get(-10));
+// console.log(list.get(10));
+console.log(list.set(1, 456));
+console.log(list.set(11, 456));
+console.log(list.get(1)?.val);
