@@ -120,6 +120,7 @@ class SinglyLinkedList<T> {
     this.length++;
     return this;
   }
+
   get(index: number): ListNode<T> | null {
     if (index >= this.length || index < 0) return null;
     let count = 0,
@@ -130,6 +131,7 @@ class SinglyLinkedList<T> {
     }
     return current;
   }
+
   set(index: number, val: T): boolean {
     let foundNode = this.get(index);
     if (foundNode) {
@@ -138,6 +140,7 @@ class SinglyLinkedList<T> {
     }
     return false;
   }
+
   insert(index: number, val: T): boolean {
     if (index < 0 || index > this.length) return false;
     if (index === this.length) {
@@ -158,6 +161,7 @@ class SinglyLinkedList<T> {
     this.length++;
     return true;
   }
+
   remove(index: number): T | undefined {
     if (index < 0 || index > this.length) return undefined;
     if (index === this.length - 1) {
@@ -175,13 +179,76 @@ class SinglyLinkedList<T> {
 
     return removedNode.val;
   }
+
+  print(): void {
+    let arr = [];
+    let current = this.head;
+    while (current) {
+      arr.push(current.val);
+      current = current.next;
+    }
+    console.log(arr);
+  }
+
+  reverse(): SinglyLinkedList<T> {
+    /**
+     * Swap the head and tail
+     * Create a variable called next
+     * Create a variable called prev
+     * Create a variable called node and initialize it to the head property.
+     * Loop through the list
+     * Set the next to be the next property on whatever node is
+     * Set tht next property on the node to be whatever prev is
+     * Set prev to be the value of the node variable
+     * Set the node variable to be the value of the next variable.
+     */
+    if (!this.head || !this.head.next) {
+      // List is empty or has only one node
+      return this;
+    }
+
+    let node: ListNode<T> | null = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let prev: ListNode<T> | null = null;
+    let next: ListNode<T> | null = null;
+
+    while (node) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    if (this.tail) {
+      this.tail.next = null;
+    }
+    // ["Hello", "There", "!", "How", "are", "You", "?"];
+    /**
+     * node = Hello; this.head = this.tail = ?; this.tail = node = Hello => ["?", "Hello"]
+     * Inside While loop
+     * node = Hello -> next = node.next = Hello.next = There; node.next = Hello.next = prev = null; prev = node = Hello; node = next = There
+     * node = There -> next = There.next = !; node.next = There.next = prev = Hello; prev = node = There; node = next = !;
+     * node = ! -> next = node.next = !.next = How; node.next = !.next = prev = There; prev = node = !; node = next = How;
+     * node = How -> next = node.next = How.next = are; node.next = How.next = prev = !; prev = node = How; node = next = are;
+     */
+    return this;
+  }
 }
 
 let list = new SinglyLinkedList();
 // console.log("empty list", list);
-list.push("Hello").push("There").push("!");
+list
+  .push("Hello")
+  .push("There")
+  .push("!")
+  .push("How")
+  .push("are")
+  .push("You")
+  .push("?");
 // console.log("list", list);
-list.traverse();
+// list.traverse();
 // let poppedValue = list.pop();
 // console.log("Popped value:", poppedValue);
 
@@ -203,9 +270,13 @@ list.traverse();
 // console.log(list.set(1, 456));
 // console.log(list.set(11, 456));
 // console.log(list.get(1)?.val);
-list.insert(1, 453);
-list.insert(0, "first");
+// list.insert(1, 453);
+// list.insert(0, "first");
 // console.log(list.length);
-list.traverse();
-list.remove(1);
-list.traverse();
+// list.traverse();
+// list.remove(1);
+// list.traverse();
+list.print();
+
+list.reverse();
+list.print();
