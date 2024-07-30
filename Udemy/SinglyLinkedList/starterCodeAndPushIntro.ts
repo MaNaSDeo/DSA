@@ -24,6 +24,20 @@ first.next.next.next.next.next.next = new ListNode("?");
 
 // console.log("first", first);
 
+/**
+ * SinglyLinkedList<T> - A generic implementation of a singly linked list.
+ *
+ * This class provides various operations for manipulating a singly linked list,
+ * including adding and removing elements, traversing the list, and more.
+ *
+ * @typeparam T The type of elements stored in the list.
+ *
+ * Insertion - O(1)
+ * Removal - if at beginning O(1), else O(n)
+ * Searching - O(N)
+ * Access - O(N)
+ */
+
 class SinglyLinkedList<T> {
   head: ListNode<T> | null;
   tail: ListNode<T> | null;
@@ -35,6 +49,14 @@ class SinglyLinkedList<T> {
     this.length = 0;
   }
 
+  /**
+   * Adds a new element to the end of the list.
+   * @param val The value to be added.
+   * @returns The updated list.
+   *
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   push(val: T): SinglyLinkedList<T> {
     const newNode = new ListNode(val);
     if (!this.head) {
@@ -52,6 +74,12 @@ class SinglyLinkedList<T> {
     return this;
   }
 
+  /**
+   * Traverses the list and logs each element's value.
+   *
+   * Time complexity: O(n), where n is the number of elements in the list
+   * Space complexity: O(1)
+   */
   traverse(): void {
     let current = this.head;
     while (current) {
@@ -60,6 +88,13 @@ class SinglyLinkedList<T> {
     }
   }
 
+  /**
+   * Removes and returns the last element of the list.
+   * @returns The value of the removed element, or undefined if the list is empty.
+   *
+   * Time complexity: O(n), where n is the number of elements in the list
+   * Space complexity: O(1)
+   */
   pop(): T | undefined {
     if (!this.head) return undefined;
 
@@ -88,6 +123,13 @@ class SinglyLinkedList<T> {
     return current.val;
   }
 
+  /**
+   * Removes and returns the first element of the list.
+   * @returns The value of the removed element, or undefined if the list is empty.
+   *
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   shift(): T | undefined {
     if (!this.head) return undefined;
 
@@ -108,6 +150,14 @@ class SinglyLinkedList<T> {
     return currentHead.val;
   }
 
+  /**
+   * Adds a new element to the beginning of the list.
+   * @param val The value to be added.
+   * @returns The updated list.
+   *
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   unshift(val: T): SinglyLinkedList<T> {
     let newNode = new ListNode(val);
     if (!this.head) {
@@ -121,6 +171,14 @@ class SinglyLinkedList<T> {
     return this;
   }
 
+  /**
+   * Retrieves the node at the specified index.
+   * @param index The index of the desired node.
+   * @returns The node at the specified index, or null if the index is out of bounds.
+   *
+   * Time complexity: O(n), where n is the index
+   * Space complexity: O(1)
+   */
   get(index: number): ListNode<T> | null {
     if (index >= this.length || index < 0) return null;
     let count = 0,
@@ -132,6 +190,15 @@ class SinglyLinkedList<T> {
     return current;
   }
 
+  /**
+   * Updates the value of the node at the specified index.
+   * @param index The index of the node to update.
+   * @param val The new value.
+   * @returns True if the update was successful, false otherwise.
+   *
+   * Time complexity: O(n), where n is the index
+   * Space complexity: O(1)
+   */
   set(index: number, val: T): boolean {
     let foundNode = this.get(index);
     if (foundNode) {
@@ -141,6 +208,15 @@ class SinglyLinkedList<T> {
     return false;
   }
 
+  /**
+   * Inserts a new element at the specified index.
+   * @param index The index at which to insert the new element.
+   * @param val The value to be inserted.
+   * @returns True if the insertion was successful, false otherwise.
+   *
+   * Time complexity: O(n), where n is the index
+   * Space complexity: O(1)
+   */
   insert(index: number, val: T): boolean {
     if (index < 0 || index > this.length) return false;
     if (index === this.length) {
@@ -162,6 +238,14 @@ class SinglyLinkedList<T> {
     return true;
   }
 
+  /**
+   * Removes the element at the specified index.
+   * @param index The index of the element to remove.
+   * @returns The value of the removed element, or undefined if the index is out of bounds.
+   *
+   * Time complexity: O(n), where n is the index
+   * Space complexity: O(1)
+   */
   remove(index: number): T | undefined {
     if (index < 0 || index > this.length) return undefined;
     if (index === this.length - 1) {
@@ -180,6 +264,12 @@ class SinglyLinkedList<T> {
     return removedNode.val;
   }
 
+  /**
+   * Prints the list as an array for easy visualization.
+   *
+   * Time complexity: O(n), where n is the number of elements in the list
+   * Space complexity: O(n), due to the creation of a temporary array
+   */
   print(): void {
     let arr = [];
     let current = this.head;
@@ -190,6 +280,13 @@ class SinglyLinkedList<T> {
     console.log(arr);
   }
 
+  /**
+   * Reverses the order of elements in the list.
+   * @returns The reversed list.
+   *
+   * Time complexity: O(n), where n is the number of elements in the list
+   * Space complexity: O(1)
+   */
   reverse(): SinglyLinkedList<T> {
     /**
      * Swap the head and tail
@@ -237,46 +334,56 @@ class SinglyLinkedList<T> {
   }
 }
 
-let list = new SinglyLinkedList();
-// console.log("empty list", list);
-list
-  .push("Hello")
-  .push("There")
-  .push("!")
-  .push("How")
-  .push("are")
-  .push("You")
-  .push("?");
-// console.log("list", list);
-// list.traverse();
-// let poppedValue = list.pop();
-// console.log("Popped value:", poppedValue);
+// Create a new SinglyLinkedList
+let list = new SinglyLinkedList<string>();
 
-// console.log("After pop:");
-// list.shift();
-// console.log("first shift list", list);
-// list.shift();
-// console.log("second shift list", list);
-// list.shift();
-// console.log("third shift list", list);
-// list.unshift("Okay");
-// console.log("list", list);
+// Test push method
+console.log("Testing push method:");
+list.push("Hello");
+list.push("World");
+list.push("!");
+list.print(); // Expected output: ["Hello", "World", "!"]
 
-// list.traverse();
-// console.log(list.get(0));
-// console.log(list.get(3));
-// console.log(list.get(-10));
-// console.log(list.get(10));
-// console.log(list.set(1, 456));
-// console.log(list.set(11, 456));
-// console.log(list.get(1)?.val);
-// list.insert(1, 453);
-// list.insert(0, "first");
-// console.log(list.length);
-// list.traverse();
-// list.remove(1);
-// list.traverse();
-list.print();
+// Test traverse method
+console.log("\nTesting traverse method:");
+list.traverse(); // Expected output: Hello, World, !
 
+// Test pop method
+console.log("\nTesting pop method:");
+console.log("Popped value:", list.pop()); // Expected output: !
+list.print(); // Expected output: ["Hello", "World"]
+
+// Test shift method
+console.log("\nTesting shift method:");
+console.log("Shifted value:", list.shift()); // Expected output: Hello
+list.print(); // Expected output: ["World"]
+
+// Test unshift method
+console.log("\nTesting unshift method:");
+list.unshift("Start");
+list.print(); // Expected output: ["Start", "World"]
+
+// Test get method
+console.log("\nTesting get method:");
+console.log("Value at index 1:", list.get(1)?.val); // Expected output: World
+
+// Test set method
+console.log("\nTesting set method:");
+list.set(0, "Beginning");
+list.print(); // Expected output: ["Beginning", "World"]
+
+// Test insert method
+console.log("\nTesting insert method:");
+list.insert(1, "Middle");
+list.print(); // Expected output: ["Beginning", "Middle", "World"]
+
+// Test remove method
+console.log("\nTesting remove method:");
+console.log("Removed value:", list.remove(1)); // Expected output: Middle
+list.print(); // Expected output: ["Beginning", "World"]
+
+// Test reverse method
+console.log("\nTesting reverse method:");
+list.push("End");
 list.reverse();
-list.print();
+list.print(); // Expected output: ["End", "World", "Beginning"]
