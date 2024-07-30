@@ -138,6 +138,24 @@ class SinglyLinkedList<T> {
     }
     return false;
   }
+  insert(index: number, val: T): boolean {
+    if (index < 0 || index > this.length) return false;
+    if (index === this.length) {
+      this.push(val);
+      return true;
+    }
+    if (index === 0) {
+      this.unshift(val);
+      return true;
+    }
+    let newNode = new ListNode(val);
+    let prevNode = this.get(index - 1);
+    let tempNode = prevNode!.next;
+    newNode.next = tempNode;
+    prevNode!.next = newNode;
+    this.length++;
+    return true;
+  }
 }
 
 let list = new SinglyLinkedList();
@@ -163,6 +181,10 @@ list.traverse();
 // console.log(list.get(3));
 // console.log(list.get(-10));
 // console.log(list.get(10));
-console.log(list.set(1, 456));
-console.log(list.set(11, 456));
-console.log(list.get(1)?.val);
+// console.log(list.set(1, 456));
+// console.log(list.set(11, 456));
+// console.log(list.get(1)?.val);
+list.insert(1, 453);
+list.insert(0, "first");
+// console.log(list.length);
+list.traverse();
