@@ -142,10 +142,12 @@ class SinglyLinkedList<T> {
     if (index < 0 || index > this.length) return false;
     if (index === this.length) {
       this.push(val);
+      this.length++;
       return true;
     }
     if (index === 0) {
       this.unshift(val);
+      this.length++;
       return true;
     }
     let newNode = new ListNode(val);
@@ -155,6 +157,23 @@ class SinglyLinkedList<T> {
     prevNode!.next = newNode;
     this.length++;
     return true;
+  }
+  remove(index: number): T | undefined {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === this.length - 1) {
+      return this.pop();
+    }
+    if (index === 0) {
+      return this.shift();
+    }
+    let prevNode = this.get(index - 1);
+    if (!prevNode || !prevNode.next) return undefined;
+
+    const removedNode = prevNode.next;
+    prevNode!.next = removedNode.next;
+    this.length--;
+
+    return removedNode.val;
   }
 }
 
@@ -187,4 +206,6 @@ list.traverse();
 list.insert(1, 453);
 list.insert(0, "first");
 // console.log(list.length);
+list.traverse();
+list.remove(1);
 list.traverse();
