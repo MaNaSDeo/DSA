@@ -56,6 +56,7 @@ class DoublyLinkedList<T> {
     this.length--;
     return poppedNode.val;
   }
+
   shift(): T | undefined {
     if (!this.head) return undefined; // We can check for this.length === 0 as well.
 
@@ -75,6 +76,7 @@ class DoublyLinkedList<T> {
     this.length--;
     return shiftedNode.val;
   }
+
   unshift(val: T): DoublyLinkedList<T> {
     let newNode = new DoubleListNode(val);
 
@@ -90,6 +92,28 @@ class DoublyLinkedList<T> {
     this.length++;
     return this;
   }
+
+  get(index: number): T | null {
+    if (index < 0 || index >= this.length) return null;
+    let current: DoubleListNode<T>;
+    if (index <= this.length / 2) {
+      // index is in first half
+      console.log("Running from start");
+      current = this.head!;
+      for (let i = 0; i < index; i++) {
+        current = current.next!;
+      }
+    } else {
+      // index is in second half
+      console.log("Running from Last");
+      current = this.tail!;
+      for (let i = this.length - 1; i > index; i--) {
+        current = current.prev!;
+      }
+    }
+
+    return current.val;
+  }
 }
 
 // let firstDoublyLinkedList = new DoubleListNode(12);
@@ -102,11 +126,16 @@ class DoublyLinkedList<T> {
 let firstDoublyLinkedList = new DoublyLinkedList();
 firstDoublyLinkedList.push(13);
 firstDoublyLinkedList.push(14);
-console.log("firstDoublyLinkedList", firstDoublyLinkedList);
+firstDoublyLinkedList.push(15);
+firstDoublyLinkedList.push(16);
+firstDoublyLinkedList.push(17);
+firstDoublyLinkedList.push(18);
+// console.log("firstDoublyLinkedList", firstDoublyLinkedList);
 // console.log(firstDoublyLinkedList.pop());
 // console.log(firstDoublyLinkedList.shift());
 // console.log(firstDoublyLinkedList.shift());
 // console.log(firstDoublyLinkedList.shift());
-firstDoublyLinkedList.unshift(1);
+// firstDoublyLinkedList.unshift(1);
+console.log(firstDoublyLinkedList.get(4));
 
-console.log("firstDoublyLinkedList", firstDoublyLinkedList);
+// console.log("firstDoublyLinkedList", firstDoublyLinkedList);
