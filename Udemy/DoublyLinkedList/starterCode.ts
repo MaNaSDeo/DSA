@@ -36,6 +36,23 @@ class DoublyLinkedList<T> {
     this.length++;
     return this;
   }
+
+  pop(): T | undefined {
+    if (!this.head) return undefined;
+
+    let poppedNode = this.tail!;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.tail = poppedNode.prev!;
+      this.tail.next = null;
+      poppedNode.prev = null;
+    }
+    this.length--;
+    return poppedNode.val;
+  }
 }
 
 // let firstDoublyLinkedList = new DoubleListNode(12);
@@ -48,4 +65,8 @@ class DoublyLinkedList<T> {
 let firstDoublyLinkedList = new DoublyLinkedList();
 firstDoublyLinkedList.push(13);
 firstDoublyLinkedList.push(14);
+console.log(firstDoublyLinkedList.pop());
+console.log(firstDoublyLinkedList.pop());
+console.log(firstDoublyLinkedList.pop());
+
 console.log("firstDoublyLinkedList", firstDoublyLinkedList);
