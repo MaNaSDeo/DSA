@@ -75,6 +75,21 @@ class DoublyLinkedList<T> {
     this.length--;
     return shiftedNode.val;
   }
+  unshift(val: T): DoublyLinkedList<T> {
+    let newNode = new DoubleListNode(val);
+
+    if (!this.head) {
+      this.head = newNode;
+      this.tail = newNode;
+    } else {
+      this.head.prev = newNode;
+      newNode.next = this.head;
+      this.head = newNode;
+    }
+
+    this.length++;
+    return this;
+  }
 }
 
 // let firstDoublyLinkedList = new DoubleListNode(12);
@@ -89,8 +104,9 @@ firstDoublyLinkedList.push(13);
 firstDoublyLinkedList.push(14);
 console.log("firstDoublyLinkedList", firstDoublyLinkedList);
 // console.log(firstDoublyLinkedList.pop());
-console.log(firstDoublyLinkedList.shift());
-console.log(firstDoublyLinkedList.shift());
-console.log(firstDoublyLinkedList.shift());
+// console.log(firstDoublyLinkedList.shift());
+// console.log(firstDoublyLinkedList.shift());
+// console.log(firstDoublyLinkedList.shift());
+firstDoublyLinkedList.unshift(1);
 
 console.log("firstDoublyLinkedList", firstDoublyLinkedList);
