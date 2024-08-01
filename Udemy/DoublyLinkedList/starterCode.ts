@@ -178,7 +178,7 @@ class DoublyLinkedList<T> {
     return removedNode;
   }
 }
-
+/*
 // let firstDoublyLinkedList = new DoubleListNode(12);
 
 // firstDoublyLinkedList.next = new DoubleListNode(13);
@@ -207,3 +207,53 @@ console.log(firstDoublyLinkedList.get(2));
 console.log(firstDoublyLinkedList.get(3));
 
 // console.log("firstDoublyLinkedList", firstDoublyLinkedList);
+*/
+
+function testDoublyLinkedList() {
+  const list = new DoublyLinkedList<number>();
+
+  console.log("Testing push:");
+  list.push(1).push(2).push(3);
+  console.log(list);
+
+  console.log("\nTesting pop:");
+  console.log(list.pop());
+  console.log(list);
+
+  console.log("\nTesting shift:");
+  console.log(list.shift());
+  console.log(list);
+
+  console.log("\nTesting unshift:");
+  list.unshift(0);
+  console.log(list);
+
+  console.log("\nTesting get:");
+  console.log(list.get(0));
+  console.log(list.get(1));
+
+  console.log("\nTesting set:");
+  console.log(list.set(0, 10));
+  console.log(list);
+
+  console.log("\nTesting insert:");
+  console.log(list.insert(1, 15));
+  console.log(list);
+
+  console.log("\nTesting remove:");
+  console.log(list.remove(1));
+  console.log(list);
+
+  console.log("\nTesting edge cases:");
+  console.log(list.pop());
+  console.log(list.pop());
+  console.log(list.pop());
+  console.log(list.pop()); // Should return undefined
+  console.log(list);
+
+  list.push(1).push(2);
+  console.log("\nFinal list:");
+  console.log(list);
+}
+
+testDoublyLinkedList();
