@@ -93,7 +93,7 @@ class DoublyLinkedList<T> {
     return this;
   }
 
-  get(index: number): T | null {
+  get(index: number): DoubleListNode<T> | null {
     if (index < 0 || index >= this.length) return null;
     let current: DoubleListNode<T>;
     if (index <= this.length / 2) {
@@ -112,7 +112,16 @@ class DoublyLinkedList<T> {
       }
     }
 
-    return current.val;
+    return current;
+  }
+
+  set(index: number, val: T): boolean {
+    let desiredNode = this.get(index);
+    if (!desiredNode) return false;
+    else {
+      desiredNode.val = val;
+      return true;
+    }
   }
 }
 
@@ -136,6 +145,8 @@ firstDoublyLinkedList.push(18);
 // console.log(firstDoublyLinkedList.shift());
 // console.log(firstDoublyLinkedList.shift());
 // firstDoublyLinkedList.unshift(1);
-console.log(firstDoublyLinkedList.get(4));
+console.log(firstDoublyLinkedList.get(2));
+console.log(firstDoublyLinkedList.set(2, 99));
+console.log(firstDoublyLinkedList.get(2));
 
 // console.log("firstDoublyLinkedList", firstDoublyLinkedList);
