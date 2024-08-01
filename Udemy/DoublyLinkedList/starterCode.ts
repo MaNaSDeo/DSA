@@ -98,14 +98,12 @@ class DoublyLinkedList<T> {
     let current: DoubleListNode<T>;
     if (index <= this.length / 2) {
       // index is in first half
-      console.log("Running from start");
       current = this.head!;
       for (let i = 0; i < index; i++) {
         current = current.next!;
       }
     } else {
       // index is in second half
-      console.log("Running from Last");
       current = this.tail!;
       for (let i = this.length - 1; i > index; i--) {
         current = current.prev!;
@@ -122,6 +120,25 @@ class DoublyLinkedList<T> {
       desiredNode.val = val;
       return true;
     }
+  }
+
+  insert(index: number, val: T): boolean {
+    if (index < 0 || index >= this.length) return false;
+    if (index === 0) this.unshift(val);
+    if (index === this.length - 1) this.push(val);
+
+    let prevNode = this.get(index - 1);
+    // let nextNode = this.get(index);
+    let nextNode = prevNode?.next!;
+    let newNode = new DoubleListNode(val);
+
+    newNode.next = nextNode;
+    nextNode!.prev = newNode;
+    newNode.prev = prevNode;
+    prevNode!.next = newNode;
+
+    this.length++;
+    return true;
   }
 }
 
@@ -146,7 +163,9 @@ firstDoublyLinkedList.push(18);
 // console.log(firstDoublyLinkedList.shift());
 // firstDoublyLinkedList.unshift(1);
 console.log(firstDoublyLinkedList.get(2));
-console.log(firstDoublyLinkedList.set(2, 99));
+// console.log(firstDoublyLinkedList.set(2, 99));
+firstDoublyLinkedList.insert(2, 55);
 console.log(firstDoublyLinkedList.get(2));
+console.log(firstDoublyLinkedList.get(3));
 
 // console.log("firstDoublyLinkedList", firstDoublyLinkedList);
