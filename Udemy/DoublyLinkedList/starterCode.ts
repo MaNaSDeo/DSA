@@ -48,10 +48,32 @@ class DoublyLinkedList<T> {
     } else {
       this.tail = poppedNode.prev!;
       this.tail.next = null;
-      poppedNode.prev = null;
     }
+    // Detach the popped node from the list
+    poppedNode.prev = null;
+    poppedNode.next = null;
+
     this.length--;
     return poppedNode.val;
+  }
+  shift(): T | undefined {
+    if (!this.head) return undefined; // We can check for this.length === 0 as well.
+
+    let shiftedNode = this.head;
+
+    if (this.length === 1) {
+      this.head = null;
+      this.tail = null;
+    } else {
+      this.head = shiftedNode.next;
+      this.head!.prev = null;
+    }
+
+    shiftedNode.next = null;
+    shiftedNode.prev = null;
+
+    this.length--;
+    return shiftedNode.val;
   }
 }
 
@@ -65,8 +87,10 @@ class DoublyLinkedList<T> {
 let firstDoublyLinkedList = new DoublyLinkedList();
 firstDoublyLinkedList.push(13);
 firstDoublyLinkedList.push(14);
-console.log(firstDoublyLinkedList.pop());
-console.log(firstDoublyLinkedList.pop());
-console.log(firstDoublyLinkedList.pop());
+console.log("firstDoublyLinkedList", firstDoublyLinkedList);
+// console.log(firstDoublyLinkedList.pop());
+console.log(firstDoublyLinkedList.shift());
+console.log(firstDoublyLinkedList.shift());
+console.log(firstDoublyLinkedList.shift());
 
 console.log("firstDoublyLinkedList", firstDoublyLinkedList);
