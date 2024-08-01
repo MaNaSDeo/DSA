@@ -37,7 +37,7 @@ class DoublyLinkedList<T> {
     return this;
   }
 
-  pop(): T | undefined {
+  pop(): DoubleListNode<T> | undefined {
     if (!this.head) return undefined;
 
     let poppedNode = this.tail!;
@@ -54,10 +54,10 @@ class DoublyLinkedList<T> {
     poppedNode.next = null;
 
     this.length--;
-    return poppedNode.val;
+    return poppedNode;
   }
 
-  shift(): T | undefined {
+  shift(): DoubleListNode<T> | undefined {
     if (!this.head) return undefined; // We can check for this.length === 0 as well.
 
     let shiftedNode = this.head;
@@ -74,7 +74,7 @@ class DoublyLinkedList<T> {
     shiftedNode.prev = null;
 
     this.length--;
-    return shiftedNode.val;
+    return shiftedNode;
   }
 
   unshift(val: T): DoublyLinkedList<T> {
@@ -140,6 +140,43 @@ class DoublyLinkedList<T> {
     this.length++;
     return true;
   }
+
+  remove(index: number): DoubleListNode<T> | undefined {
+    if (index < 0 || index >= this.length) return undefined;
+    /*
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    let removedNode = this.get(index)!;
+    let nextNode = removedNode?.next!;
+    let prevNode = removedNode?.prev!;
+
+    prevNode.next = nextNode;
+    nextNode.prev = prevNode;
+
+    removedNode.next = null;
+    removedNode.prev = null;
+    */
+    let removedNode: DoubleListNode<T>;
+
+    if (index === 0) removedNode = this.shift()!;
+    else if (index === this.length - 1) removedNode = this.pop()!;
+    else {
+      removedNode = this.get(index)!;
+
+      const nextNode = removedNode.next!;
+      const prevNode = removedNode.prev!;
+
+      prevNode.next = nextNode;
+      nextNode.prev = prevNode;
+
+      removedNode.next = null;
+      removedNode.prev = null;
+    }
+
+    this.length--;
+    return removedNode;
+  }
 }
 
 // let firstDoublyLinkedList = new DoubleListNode(12);
@@ -164,7 +201,8 @@ firstDoublyLinkedList.push(18);
 // firstDoublyLinkedList.unshift(1);
 console.log(firstDoublyLinkedList.get(2));
 // console.log(firstDoublyLinkedList.set(2, 99));
-firstDoublyLinkedList.insert(2, 55);
+// firstDoublyLinkedList.insert(2, 55);
+firstDoublyLinkedList.remove(2);
 console.log(firstDoublyLinkedList.get(2));
 console.log(firstDoublyLinkedList.get(3));
 
