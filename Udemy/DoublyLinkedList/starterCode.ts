@@ -1,3 +1,11 @@
+/**
+ * Time Complexity:
+ * Insertion - O(1)
+ * Removal - O(1)
+ * Searching - O(N)
+ * Access - O(N)
+ * Technically searching is O(N/2), but that is still O(N)
+ */
 class DoubleListNode<T> {
   val: T;
   next: DoubleListNode<T> | null;
@@ -21,6 +29,12 @@ class DoublyLinkedList<T> {
     this.length = 0;
   }
 
+  /**
+   * @param val The value to be added to the end of the list
+   * @returns The updated DoublyLinkedList
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   push(val: T): DoublyLinkedList<T> {
     const newNode = new DoubleListNode(val);
 
@@ -37,6 +51,11 @@ class DoublyLinkedList<T> {
     return this;
   }
 
+  /**
+   * @returns The value of the removed tail node, or undefined if the list is empty
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   pop(): DoubleListNode<T> | undefined {
     if (!this.head) return undefined;
 
@@ -57,6 +76,11 @@ class DoublyLinkedList<T> {
     return poppedNode;
   }
 
+  /**
+   * @returns The value of the removed head node, or undefined if the list is empty
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   shift(): DoubleListNode<T> | undefined {
     if (!this.head) return undefined; // We can check for this.length === 0 as well.
 
@@ -77,6 +101,12 @@ class DoublyLinkedList<T> {
     return shiftedNode;
   }
 
+  /**
+   * @param val The value to be added to the beginning of the list
+   * @returns The updated DoublyLinkedList
+   * Time complexity: O(1)
+   * Space complexity: O(1)
+   */
   unshift(val: T): DoublyLinkedList<T> {
     let newNode = new DoubleListNode(val);
 
@@ -93,6 +123,12 @@ class DoublyLinkedList<T> {
     return this;
   }
 
+  /**
+   * @param index The index of the node to retrieve
+   * @returns The node at the specified index, or null if the index is out of bounds
+   * Time complexity: O(n), optimized to O(n/2) on average
+   * Space complexity: O(1)
+   */
   get(index: number): DoubleListNode<T> | null {
     if (index < 0 || index >= this.length) return null;
     let current: DoubleListNode<T>;
@@ -113,6 +149,13 @@ class DoublyLinkedList<T> {
     return current;
   }
 
+  /**
+   * @param index The index of the node to update
+   * @param val The new value to set
+   * @returns A boolean indicating whether the update was successful
+   * Time complexity: O(n), optimized to O(n/2) on average
+   * Space complexity: O(1)
+   */
   set(index: number, val: T): boolean {
     let desiredNode = this.get(index);
     if (!desiredNode) return false;
@@ -122,6 +165,13 @@ class DoublyLinkedList<T> {
     }
   }
 
+  /**
+   * @param index The index at which to insert the new node
+   * @param val The value of the new node
+   * @returns A boolean indicating whether the insertion was successful
+   * Time complexity: O(n), optimized to O(n/2) on average
+   * Space complexity: O(1)
+   */
   insert(index: number, val: T): boolean {
     if (index < 0 || index >= this.length) return false;
     if (index === 0) this.unshift(val);
@@ -141,6 +191,12 @@ class DoublyLinkedList<T> {
     return true;
   }
 
+  /**
+   * @param index The index of the node to remove
+   * @returns The removed node, or undefined if the index is out of bounds
+   * Time complexity: O(n), optimized to O(n/2) on average
+   * Space complexity: O(1)
+   */
   remove(index: number): DoubleListNode<T> | undefined {
     if (index < 0 || index >= this.length) return undefined;
     /*
