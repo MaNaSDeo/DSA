@@ -6,7 +6,7 @@
   "author": "manasdeo <rmnslogin@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "tsc && node dist/Udemy/DoublyLinkedList/starterCode.js",
+    "start": "tsc && node dist/StriverSDESheet/Arrays-I/SetMatrixZeroes.js",
     "dev": "ts-node-dev --respawn --pretty DSA-02/Crio/Lec-01/printMatrixInSpiralOrder.ts",
     "build": "tsc"
   },
